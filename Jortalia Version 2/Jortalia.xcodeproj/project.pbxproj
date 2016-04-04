@@ -12,7 +12,6 @@
 		8202D3451C923ECA009E820A /* CurrentGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8202D3441C923ECA009E820A /* CurrentGameTableViewCell.swift */; };
 		8202D3471C9240C2009E820A /* CurrentGamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8202D3461C9240C2009E820A /* CurrentGamesTableViewController.swift */; };
 		82F1146A1C850281002193E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F114691C850281002193E2 /* AppDelegate.swift */; };
-		82F1146C1C850281002193E2 /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F1146B1C850281002193E2 /* GameBoardViewController.swift */; };
 		82F1146F1C850281002193E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F1146D1C850281002193E2 /* Main.storyboard */; };
 		82F114711C850281002193E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82F114701C850281002193E2 /* Assets.xcassets */; };
 		82F114741C850281002193E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F114721C850281002193E2 /* LaunchScreen.storyboard */; };
@@ -27,7 +26,6 @@
 		8202D3461C9240C2009E820A /* CurrentGamesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentGamesTableViewController.swift; sourceTree = "<group>"; };
 		82F114661C850281002193E2 /* Jortalia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jortalia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F114691C850281002193E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		82F1146B1C850281002193E2 /* GameBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardViewController.swift; sourceTree = "<group>"; };
 		82F1146E1C850281002193E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82F114701C850281002193E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82F114731C850281002193E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,7 +71,6 @@
 				82F1146D1C850281002193E2 /* Main.storyboard */,
 				82F114701C850281002193E2 /* Assets.xcassets */,
 				82F114691C850281002193E2 /* AppDelegate.swift */,
-				82F1146B1C850281002193E2 /* GameBoardViewController.swift */,
 				82F114721C850281002193E2 /* LaunchScreen.storyboard */,
 				82F114751C850281002193E2 /* Info.plist */,
 				82F1A4301C8785DC00E203FC /* AccountViewController.swift */,
@@ -154,7 +151,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82F1146C1C850281002193E2 /* GameBoardViewController.swift in Sources */,
 				8202D3451C923ECA009E820A /* CurrentGameTableViewCell.swift in Sources */,
 				82F1146A1C850281002193E2 /* AppDelegate.swift in Sources */,
 				8202D3431C91FB0A009E820A /* FriendsTableViewController.swift in Sources */,
