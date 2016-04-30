@@ -40,8 +40,8 @@ class EditAccountViewController: UIViewController {
         country.text = user?.objectForKey("country") as? String
         bio.text = user?.objectForKey("bio") as? String
         //////??????????
-        wins.text = user?.objectForKey("wins") as? String
-        losses.text = user?.objectForKey("losses") as? String
+        wins.text = String((user?.objectForKey("wins") as? NSNumber)!)
+        losses.text = String((user?.objectForKey("losses") as? NSNumber)!)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -12,33 +12,30 @@ class AvatarGallery: UIViewController {
     
     let user = PFUser.currentUser()
     
-    @IBOutlet weak var smileyYellow: UIButton!
-    @IBOutlet weak var smileyPink: UIButton!
-    
-    
-    
-    
-    
-    @IBAction func onSmileyYellow(sender: AnyObject) {
-        user?.setObject("smileyYellow", forKey: "avatar") as? String
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     @IBAction func smileyYellow(sender: AnyObject) {
-        user?.setObject("smileyYellow", forKey: "avatar") as? String
+        user!.setObject("smileyYellow", forKey: "avatar")
+        
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func smileyPink(sender: AnyObject) {
+        user!.setObject("smileyPink", forKey: "avatar")
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func playerPink(sender: AnyObject) {
+        user!.setObject("playerPink", forKey: "avatar")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func playerYellow(sender: AnyObject) {
+        user!.setObject("playerYellow", forKey: "avatar")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func playerBlue(sender: AnyObject) {
+        user!.setObject("playerBlue", forKey: "avatar")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -57,5 +54,14 @@ class AvatarGallery: UIViewController {
    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+    
     }
 }
+
+
+
+//    @IBAction func onSmileyYellow(sender: AnyObject) {
+//        user?.setObject("smileyYellow", forKey: "avatar") as? String
+//
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
