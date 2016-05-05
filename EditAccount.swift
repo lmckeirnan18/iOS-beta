@@ -17,15 +17,14 @@ class EditAccountViewController: UIViewController {
     @IBOutlet weak var bio: UITextField!
     @IBOutlet weak var wins: UILabel!
     @IBOutlet weak var losses: UILabel!
-   
-    
     @IBOutlet weak var avatar: UIImageView!
     
+    let user = PFUser.currentUser()
+    
     @IBAction func onSave(sender: AnyObject) {
-        let user = PFUser.currentUser()
+        
         user?.setObject(self.country.text!, forKey: "country")
         user?.setObject(self.bio.text!, forKey: "bio")
-        //user?.setObject("test", forKey: "avatar")
         
         user!.saveInBackgroundWithBlock { (succes, error) in
                     var _ = 0
@@ -46,6 +45,7 @@ class EditAccountViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        avatar.image = UIImage(named: (user?.objectForKey("avatar") as? String)!)
         
         
     }

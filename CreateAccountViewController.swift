@@ -16,12 +16,9 @@ class CreateAccountViewController: UIViewController{
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var wins: UILabel!
     @IBOutlet weak var losses: UILabel!
-    //?????
     @IBOutlet weak var avatar: UIImageView!
     
     @IBAction func onSave(sender: AnyObject) {
-        
-
         
         let user = PFUser()
         user.username = self.username.text

@@ -16,31 +16,12 @@ class OpponentViewController: UIViewController {
     @IBOutlet weak var avatarOpponent: UIImageView!
     @IBOutlet weak var winsOponent: UILabel!
     @IBOutlet weak var lossesOponent: UILabel!
-    
     @IBOutlet weak var addDelete: UIButton!
     //??? button add or delete
     
-    @IBAction func addDelete(sender: AnyObject) {
-        
-        
-        //if for text
-        //boolean for deleting and adding
-        if (addDelete.titleLabel == "add"){
-            let obj = PFObject(className: "Friends")
-            obj.setObject((user?.username)!, forKey: "username")
-            obj.setObject((player?.objectForKey("username"))!, forKey: "friend")
-            obj.saveInBackgroundWithBlock({ (success, error) in
-                if (error != nil)
-                {
-                    print(error?.localizedDescription);
-                }
-            })
-        }
-        else
-        {
-            player?.deleteEventually()
-        }
-    }
+    var add: Bool = true
+    
+ 
     ///////////////////////////////////////////////
     let user = PFUser.currentUser()
     
@@ -64,13 +45,14 @@ class OpponentViewController: UIViewController {
         query.whereKey("username", equalTo: (user?.username)!)
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
         self.addDelete.setTitle("Add", forState: .Normal)
+            self.add = true //boolean to keep track of button text
             for r in results!{
                 print("your friends")
                 print(r.objectForKey("friend")!)
                 if (self.player?.objectForKey("username") as? String == r.objectForKey("friend") as? String)//?????
                 {
                     self.addDelete.setTitle("Delete", forState: .Normal)
-                   
+                    self.add = false // bool to keep track of button text
                 }
                
             }
@@ -123,6 +105,37 @@ class OpponentViewController: UIViewController {
     
     /////////////////////////////////////
 
+    
+    @IBAction func addDelete(sender: AnyObject) {
+        // if-else with boolean
+        if add == true
+        {
+            let obj = PFObject(className: "Friends")
+            obj.setObject((user?.username)!, forKey: "username")
+            obj.setObject((player?.objectForKey("username"))!, forKey: "friend")
+            obj.saveInBackgroundWithBlock({ (success, error) in
+                if error != nil
+                {
+                    print (error?.localizedDescription)
+                }
+            })
+        }
+        else{
+            //????????????????
+            let obj = PFObject(className: "Friends")
+            obj.setObject((player?.objectForKey("username")!)!, forKey: "friend")
+            obj.deleteInBackgroundWithBlock({ (success, error) in
+                if error != nil{
+                    print(error!.localizedDescription)
+                }
+            })
+            //player?.deleteEventually()
+        }
+        
+    
+    }
+ ////////////////////////////////////////////////////////
+    
     
     
     

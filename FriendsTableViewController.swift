@@ -14,41 +14,45 @@ class FriendsTableViewController: UITableViewController {
     
     let user = PFUser.currentUser()
     var friend: PFObject?
-    
+    var results :[PFObject]?
     ///////////////////////////////
     override func viewDidLoad() {
         super.viewDidLoad()
         ///???????code??????????????
+        let query = PFQuery(className: "Friends")
+        query.whereKey("username", equalTo: (user!.username)!)
+        query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+            self.results = results
+            self.tableView.reloadData()
+        }
+
     }
     ///////////////////////////////???????????????????????????
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)->UITableViewCell{
         let cellIdentifier = "FriendsTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! FriendsTableViewCell
-        let query = PFQuery(className: "Friends")
-        query.whereKey("username", equalTo: (user?.username)!)
-        query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
-            for r in results!{
-                //print("your friends")
-               // print(r.objectForKey("friend")!)
-                if (self.friend?.objectForKey("username") as? String == r.objectForKey("friend") as? String)//?????
-                {
-                            cell.usernameFriend.text = self.friend!.objectForKey("username") as? String
-                            cell.countryFriend.text = self.friend!.objectForKey("country") as? String
-                            cell.avatarFriend.image = UIImage(named: self.friend!.objectForKey("avatar")! as! String)
-                            cell.winsFriend.text = String(self.friend!.objectForKey("wins")as! NSNumber!)
-                            cell.lossesFriend.text = String(self.friend!.objectForKey("losses")as! NSNumber)
-                }
-            }
-        }
+        let r = results![indexPath.row]
+        cell.usernameFriend.text = r.objectForKey("username") as? String ///???? access the friend not the user
+        cell.countryFriend.text = r.objectForKey("country") as? String
+        cell.avatarFriend.image = UIImage(named: (r.objectForKey("avatar")! as? String)!) //?????
+        cell.winsFriend.text = String(r.objectForKey("wins")as! NSNumber!)
+        cell.lossesFriend.text = String(r.objectForKey("losses")as! NSNumber!)
+                
+        
+        
                 return cell
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 2
-//    }
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.results != nil{
+            return self.results!.count
+        }
+        return 0
+    }
+}
     
 /////////////////////////////////////////////////
     
@@ -96,7 +100,7 @@ class FriendsTableViewController: UITableViewController {
 //        
 //        return cell
 //    }
-}
+
 
 //
 //class Friend {

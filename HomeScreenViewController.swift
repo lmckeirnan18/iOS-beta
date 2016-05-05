@@ -9,6 +9,7 @@
 import UIKit
 
 class HomeScreenViewController: UIViewController {
+    @IBOutlet weak var username: UILabel!
     
     @IBAction func onLogout(sender: AnyObject) {
         
@@ -20,6 +21,10 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        let user = PFUser.currentUser()
+        username.text = user?.username
+    }
     
     
     
