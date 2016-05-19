@@ -26,16 +26,17 @@ class OpponentViewController: UIViewController {
     let user = PFUser.currentUser()
     
     var player: PFObject?
+    
     ///////////////////////////////////////////////
-    var playerRelationship = [PFObject]() //????????
+    var playerRelationship = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ////????????????
         usernameOponent.text = player?.objectForKey("username") as? String
         countryOponent.text = player?.objectForKey("country") as? String
         bioOponent.text = player?.objectForKey("bio") as? String
-        avatarOpponent.image = UIImage(named: (player?.objectForKey("avatar") as? String)!)
+        avatarOpponent.image = UIImage(named: (player?.objectForKey("avatar") as? String)!)//????
         winsOponent.text = String((player?.objectForKey("wins") as? NSNumber)!)
         lossesOponent.text = String((player?.objectForKey("losses") as? NSNumber)!)
         
@@ -98,16 +99,10 @@ class OpponentViewController: UIViewController {
 //    }
 //    });
 //
-  
-    
-    
-    
-    
     /////////////////////////////////////
 
-    
     @IBAction func addDelete(sender: AnyObject) {
-        // if-else with boolean
+        //creates a new parse object
         if add == true
         {
             let obj = PFObject(className: "Friends")
@@ -120,26 +115,45 @@ class OpponentViewController: UIViewController {
                 }
             })
         }
-        else{
-            //????????????????
-            let obj = PFObject(className: "Friends")
-            obj.setObject((player?.objectForKey("username")!)!, forKey: "friend")
-            obj.deleteInBackgroundWithBlock({ (success, error) in
-                if error != nil{
-                    print(error!.localizedDescription)
+        //deletes the specific parse object
+        else
+        {
+            var query = PFQuery(className: "Friends")
+            query.whereKey("username", equalTo: (user!.username)!)
+            query.whereKey("friend", equalTo: (player?.objectForKey("username"))!)
+            query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+                
+                for r in results!
+                {
+                    r.deleteInBackgroundWithBlock({ (success, error) in
+                        if error != nil{
+                            print(error!.localizedDescription)
+                        }
+                    })
                 }
-            })
-            //player?.deleteEventually()
+            }
+            
+            query = PFQuery(className: "Friends")
+            query.whereKey("username", equalTo: (player?.objectForKey("username"))!)
+            query.whereKey("friend", equalTo:(user!.username)! )
+            query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+                
+                for r in results!
+                {
+                    r.deleteInBackgroundWithBlock({ (success, error) in
+                        if error != nil{
+                            print(error!.localizedDescription)
+                        }
+                    })
+                }
+            }
+
         }
         
     
     }
  ////////////////////////////////////////////////////////
-    
-    
-    
-    
-    
+
     
     
     

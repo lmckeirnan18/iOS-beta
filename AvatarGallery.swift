@@ -14,9 +14,8 @@ class AvatarGallery: UIViewController {
     
     @IBAction func smileyYellow(sender: AnyObject) {
         user!.setObject("smileyYellow", forKey: "avatar")
-        
-        
         self.dismissViewControllerAnimated(true, completion: nil)
+        //how to load the data onto the edit screen????
     }
     
     @IBAction func smileyPink(sender: AnyObject) {
@@ -32,12 +31,15 @@ class AvatarGallery: UIViewController {
     @IBAction func playerYellow(sender: AnyObject) {
         user!.setObject("playerYellow", forKey: "avatar")
         self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     @IBAction func playerBlue(sender: AnyObject) {
         user!.setObject("playerBlue", forKey: "avatar")
         self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
+   
     
     
     //    @IBAction func smileyYellow(sender: AnyObject) {

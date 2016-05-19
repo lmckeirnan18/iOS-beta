@@ -29,13 +29,7 @@ class AccountViewController: UIViewController {
         bio.text = user?.objectForKey("bio") as? String
         wins.text = String((user?.objectForKey("wins") as? NSNumber)!)
         losses.text = String((user?.objectForKey("losses") as? NSNumber)!)
-        avatar.image = UIImage(named: (user?.objectForKey("avatar") as? String)!)
+        avatar.image = UIImage(named:  (user?.objectForKey("avatar") as? String)!)
         
     }
-    
-   
-
-    //overrride func viewWillAppear{ refresh image}
-    
-    
 }

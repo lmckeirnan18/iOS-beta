@@ -18,26 +18,21 @@ class FriendsTableViewController: UITableViewController {
     ///////////////////////////////
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.results = []
         ///???????code??????????????
-        let query = PFQuery(className: "Friends")
-        query.whereKey("username", equalTo: (user!.username)!)
-        query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
-            self.results = results
-            self.tableView.reloadData()
-        }
-
     }
     ///////////////////////////////???????????????????????????
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)->UITableViewCell{
         let cellIdentifier = "FriendsTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! FriendsTableViewCell
         let r = results![indexPath.row]
-        cell.usernameFriend.text = r.objectForKey("username") as? String ///???? access the friend not the user
+        cell.usernameFriend.text = r.objectForKey("username") as? String ///?
+        
         cell.countryFriend.text = r.objectForKey("country") as? String
         cell.avatarFriend.image = UIImage(named: (r.objectForKey("avatar")! as? String)!) //?????
         cell.winsFriend.text = String(r.objectForKey("wins")as! NSNumber!)
         cell.lossesFriend.text = String(r.objectForKey("losses")as! NSNumber!)
-                
+        
         
         
                 return cell
@@ -51,6 +46,35 @@ class FriendsTableViewController: UITableViewController {
             return self.results!.count
         }
         return 0
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let r = results! [indexPath.row]
+        ///present view
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("OpponentViewController") as! OpponentViewController
+        vc.player = r
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        //????
+        let query = PFQuery(className: "Friends")
+        query.whereKey("username", equalTo: (user!.username)!)
+        query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+            
+            for r in results!
+            {
+                let queryData = PFUser.query()
+                queryData!.whereKey("username", equalTo: r.objectForKey("friend") as! String)//???
+                queryData!.getFirstObjectInBackgroundWithBlock({ (friend, error) in
+                    self.results?.append(friend!)
+                    self.tableView.reloadData()
+                })
+            }
+        }
+
+        
     }
 }
     

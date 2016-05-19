@@ -23,6 +23,11 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         let user = PFUser.currentUser()
+        username.text = user?.username //not working
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let user = PFUser.currentUser()
         username.text = user?.username
     }
     

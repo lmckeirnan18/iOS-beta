@@ -17,9 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Parse.initializeWithConfiguration(ParseClientConfiguration{(config)in
-            config.applicationId = "508c8972-a9ae-4964-a521-224fa2db9fe7"
-            config.clientKey = " "
-            config.server = "https://jortalia.azurewebsites.net/parse"
+//            config.applicationId = "508c8972-a9ae-4964-a521-224fa2db9fe7"
+//            config.clientKey = " "
+//            config.server = "https://jortalia.azurewebsites.net/parse"
+            config.applicationId = "pMXAevMDCIjnggM2hHZV4jQq8iy51GnhTbM00CAG"
+            config.clientKey = "BJLG4ZEbjLcg9SvSI3xMIV2SDIAtDG45u1GaEj44"
+            config.server = "https://parseapi.back4app.com/"
+
             });
         
         return true
