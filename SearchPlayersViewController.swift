@@ -24,30 +24,23 @@ class SearchPlayers: UIViewController, UITableViewDataSource, UITableViewDelegat
         return searchResults.count
     }
     
-    
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) //as! UITableViewCell
         let obj = searchResults[indexPath.row]
         myCell.textLabel?.text = obj.objectForKey("username") as? String
         return myCell
     }
-    
-    
-    
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) // called when keyboard search button pressed
+    ////////////////////////search users by exact username/////////////////////////////
+    func searchBarSearchButtonClicked(searchBar: UISearchBar)
     {
-        //let query = PFQuery(className: "User")
         let text = searchBar.text!
         let query = PFUser.query()!
-        query.whereKey("username", equalTo: text)
+        query.whereKey("username", equalTo: text) //looking for specific username
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
             for r in results!{
                 print("you found: ")
                 print(r.objectForKey("username")!)
             }
-        
         
         
 //        playerSearchBar.resignFirstResponder()
@@ -65,15 +58,14 @@ class SearchPlayers: UIViewController, UITableViewDataSource, UITableViewDelegat
                 
                 return
           }
-        
+            //search results
             if let objects = results as [PFObject]?{
                 self.searchResults.removeAll(keepCapacity: false)
                 
                 for object in objects{
-                    //let username =  object.objectForKey("username") as! String
                     self.searchResults.append(object)
                 }
-                
+                //displays results on table??
                 dispatch_async(dispatch_get_main_queue()){
                     self.playerTable.reloadData()
                     self.playerSearchBar.resignFirstResponder()
@@ -83,7 +75,7 @@ class SearchPlayers: UIViewController, UITableViewDataSource, UITableViewDelegat
         }
     }
     
-    
+    /////////////////selecting a cell to display friend stats///////////////////
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
     
         let obj = searchResults[indexPath.row]
@@ -92,8 +84,8 @@ class SearchPlayers: UIViewController, UITableViewDataSource, UITableViewDelegat
         self.presentViewController(vc, animated: true, completion: nil)
         
     }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) // called when cancel button pressed
+    /////////////////cancle button/////////////////
+    func searchBarCancelButtonClicked(searchBar: UISearchBar)
     {
         playerSearchBar.resignFirstResponder()
         playerSearchBar.text = ""

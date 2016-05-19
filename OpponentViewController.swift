@@ -17,22 +17,17 @@ class OpponentViewController: UIViewController {
     @IBOutlet weak var winsOponent: UILabel!
     @IBOutlet weak var lossesOponent: UILabel!
     @IBOutlet weak var addDelete: UIButton!
-    //??? button add or delete
     
     var add: Bool = true
     
- 
     ///////////////////////////////////////////////
     let user = PFUser.currentUser()
-    
     var player: PFObject?
-    
-    ///////////////////////////////////////////////
     var playerRelationship = [PFObject]()
-    
+    /////////////////////////////////////////////
     override func viewDidLoad() {
         super.viewDidLoad()
-        ////????????????
+        ////////the friend's stats/////////////////
         usernameOponent.text = player?.objectForKey("username") as? String
         countryOponent.text = player?.objectForKey("country") as? String
         bioOponent.text = player?.objectForKey("bio") as? String
@@ -42,17 +37,17 @@ class OpponentViewController: UIViewController {
         
         ///new pfquerry to see relationship with objects (saving new objects)
        
-        let query = PFQuery(className: "Friends")
-        query.whereKey("username", equalTo: (user?.username)!)
-        query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
-        self.addDelete.setTitle("Add", forState: .Normal)
+        let query = PFQuery(className: "Friends") //search Friend class
+        query.whereKey("username", equalTo: (user?.username)!) //find where "username" field equals the current username
+        query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in //the results
+        self.addDelete.setTitle("Add", forState: .Normal) //set button to "Add"
             self.add = true //boolean to keep track of button text
             for r in results!{
                 print("your friends")
                 print(r.objectForKey("friend")!)
-                if (self.player?.objectForKey("username") as? String == r.objectForKey("friend") as? String)//?????
+                if (self.player?.objectForKey("username") as? String == r.objectForKey("friend") as? String) //
                 {
-                    self.addDelete.setTitle("Delete", forState: .Normal)
+                    self.addDelete.setTitle("Delete", forState: .Normal) //changing the button to "Delete"
                     self.add = false // bool to keep track of button text
                 }
                
@@ -115,7 +110,7 @@ class OpponentViewController: UIViewController {
                 }
             })
         }
-        //deletes the specific parse object
+        //deletes the specific parse object (both ways)
         else
         {
             var query = PFQuery(className: "Friends")
@@ -153,8 +148,5 @@ class OpponentViewController: UIViewController {
     
     }
  ////////////////////////////////////////////////////////
-
-    
-    
     
 }

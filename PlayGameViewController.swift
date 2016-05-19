@@ -171,13 +171,11 @@ class PlayGameViewController: UIViewController{
                         opponentCards.removeLast()
                     }
                     
-                    //numCards.text = String(userCards.count)//??
-                    
                     //dump(opponentCards)
-                    
+            
                     
                     // check if opponent has 0 then add win to user
-                    // pop up you won and some exit button
+                    // show you won screen
                     if opponentCards.count == 0
                     {
                         //////?????????
@@ -199,8 +197,6 @@ class PlayGameViewController: UIViewController{
                         opponentCards.insert(userCards.last!, atIndex: 0)
                         userCards.removeLast()
                     }
-                    
-                    //numCards.text = String(userCards.count)//??
                     
                     //dump(userCards)
                     
@@ -277,13 +273,8 @@ class PlayGameViewController: UIViewController{
                         opponentCards.removeLast()
                     }
                     
-                    //numCards.text = String(userCards.count)//??
-                    
                     //dump(opponentCards)
                     
-                    
-                    // check if opponent has 0 then add win to user
-                    // pop up you won and some exit button
                     if opponentCards.count == 0
                     {
                         user?.incrementKey("wins", byAmount: 1)
@@ -304,8 +295,6 @@ class PlayGameViewController: UIViewController{
                         opponentCards.insert(userCards.last!, atIndex: 0)
                         userCards.removeLast()
                     }
-                    
-                    //numCards.text = String(userCards.count)//??
                     
                     //dump(userCards)
                     
@@ -382,8 +371,6 @@ class PlayGameViewController: UIViewController{
                         opponentCards.removeLast()
                     }
                     
-                    //numCards.text = String(userCards.count)//??
-                    
                     //dump(opponentCards)
                     
                     if opponentCards.count == 0
@@ -406,8 +393,6 @@ class PlayGameViewController: UIViewController{
                         opponentCards.insert(userCards.last!, atIndex: 0)
                         userCards.removeLast()
                     }
-                    
-                    //numCards.text = String(userCards.count)//??
                     
                     //dump(userCards)
                     
@@ -484,13 +469,8 @@ class PlayGameViewController: UIViewController{
                         opponentCards.removeLast()
                     }
                     
-                    //numCards.text = String(userCards.count)//??
-                    
                     //dump(opponentCards)
                     
-                    
-                    // check if opponent has 0 then add win to user
-                    // pop up you won and some exit button
                     if opponentCards.count == 0
                     {
                         user?.incrementKey("wins", byAmount: 1)
@@ -511,9 +491,6 @@ class PlayGameViewController: UIViewController{
                         opponentCards.insert(userCards.last!, atIndex: 0)
                         userCards.removeLast()
                     }
-                    
-                    
-                    //numCards.text = String(userCards.count)//??
                     
                     //dump(userCards)
                     if userCards.count == 0
@@ -586,12 +563,7 @@ class PlayGameViewController: UIViewController{
                     userCards.removeLast()
                     opponentCards.removeLast()
                     
-                    //numCards.text = String(userCards.count)//???
-                    
                     //dump(opponentCards)
-                    
-                    // check if opponent has 0 then add win to user
-                    // pop up you won and some exit button
                     
                     if opponentCards.count == 0
                     {
@@ -615,12 +587,8 @@ class PlayGameViewController: UIViewController{
                     opponentCards.removeLast()
                     userCards.removeLast()
                     
-                    //numCards.text = String(userCards.count)//???
-                    
                     //dump(userCards)
                     
-                    // check if user has 0 then add loss to user
-                    // pop up you won and some exit button
                     if userCards.count == 0
                     {
                         /////?????
